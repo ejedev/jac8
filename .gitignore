@@ -1,0 +1,4 @@
+*.ch8
+.vscode
+*pycache*
+debug.py

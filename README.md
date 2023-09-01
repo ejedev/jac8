@@ -13,9 +13,9 @@ The following progress has been made, based on [Timendus' Chip-8 Test Suite.](ht
 - [x] Corax+ opcode test (passing all tests)
 - [x] Flags test (passing all tests)
 - [ ] Quirks test (compatibility modes)
-  - [ ] CHIP-8
-  - [ ] SCHIP
-  - [ ] XO-CHIP
+  - [x] CHIP-8
+  - [x] SCHIP
+  - [ ] XO-CHIP (missing Clipping)
 - [ ] Keypad test
   - [x] Ex9E DOWN
   - [x] ExA1 UP
@@ -66,6 +66,14 @@ Pygame keybindings
 Install the required modules with `pip3 install -r requirements.txt`
 
 You can run a game with `python3 main.py path/to/file.ch8`.
+
+There are three different `modes`, defined by the Timendus quirk test. They are the following:
+
+- `chip8`
+- `schip`
+- `xochip`
+
+The default value is `schip`. You can select one with `-m` or `--mode.` Example: `python3 main.py --mode chip8 game.ch8`. Please note that these modes currently **do not** provide support for SuperChip and XO-Chip specific instructions. They just cover any changes to original Chip-8 instructions or behaviour (ex `BNNN` to `BXNN`.)
 
 You can specify the amount of cycles per frame with `-c int` or `--cycles int`. This interpreter runs at 60 frames per second. If not provided, a default value of 15 is used which may be too fast for some games.
 

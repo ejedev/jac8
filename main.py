@@ -96,19 +96,25 @@ def main():
                     i = nnn
 
                 case instruction if instruction.startswith("b"):
-                    i = nnn + registers[0]
+                    if results.mode == "schip":
+                        pc = nnn + registers[vx]
+                    else:
+                        pc = nnn + registers[0]
 
                 case instruction if instruction.startswith("c"):
                     registers[vx] = random.randint(0, nn) & nn
 
                 case instruction if instruction.startswith("d"):
+                    # Display wait logic. Don't allow a draw to execute if it isn't the first cycle of a frame.
+                    if c != 0 and results.mode == "chip8":
+                        pc -= 2
+                        break
                     # New variables x1, y1 created as they need to be modified during the draw loop.
                     draw = True
                     x1 = registers[vx] & 63
                     y1 = registers[vy] & 31
                     n = int(instruction.split(f"d{x}{y}")[1], 16)
                     registers[15] = 0
-
                     for s in range(0, n):
                         sprite = ram[i + s]
                         for _ in range(0, 8):
@@ -161,11 +167,15 @@ def main():
                             while vpos <= int(x, 16):
                                 ram[i + vpos] = registers[vpos]
                                 vpos += 1
+                            if results.mode in ["chip8", "xochip"]:
+                                i += vpos
                         case "65":
                             vpos = 0
                             while vpos <= int(x, 16):
                                 registers[vpos] = ram[i + vpos]
                                 vpos += 1
+                            if results.mode in ["chip8", "xochip"]:
+                                i += vpos
 
                 case instruction if instruction.startswith("1"):
                     pc = nnn
@@ -200,10 +210,16 @@ def main():
                             registers[vx] = registers[vy]
                         case "1":
                             registers[vx] = registers[vx] | registers[vy]
+                            if results.mode == "chip8":
+                                registers[15] = 0
                         case "2":
                             registers[vx] = registers[vx] & registers[vy]
+                            if results.mode == "chip8":
+                                registers[15] = 0
                         case "3":
                             registers[vx] = registers[vx] ^ registers[vy]
+                            if results.mode == "chip8":
+                                registers[15] = 0
                         case "4":
                             registers[vx] += registers[vy]
                             if registers[vx] > 255:
@@ -219,8 +235,12 @@ def main():
                             else:
                                 registers[15] = 1
                         case "6":
-                            vf = registers[vy] & 1
-                            registers[vx] = (registers[vy] >> 1) % 256
+                            if results.mode == "schip":
+                                vf = registers[vx] & 1
+                                registers[vx] = (registers[vx] >> 1) % 256
+                            else:
+                                vf = registers[vy] & 1
+                                registers[vx] = (registers[vy] >> 1) % 256
                             registers[15] = vf
                         case "7":
                             registers[vx] = registers[vy] - registers[vx]
@@ -230,8 +250,12 @@ def main():
                             else:
                                 registers[15] = 1
                         case "e":
-                            vf = (registers[vy] >> 7) & 1
-                            registers[vx] = (registers[vy] << 1) % 256
+                            if results.mode == "schip":
+                                vf = (registers[vx] >> 7) & 1
+                                registers[vx] = (registers[vx] << 1) % 256
+                            else:
+                                vf = (registers[vy] >> 7) & 1
+                                registers[vx] = (registers[vy] << 1) % 256
                             registers[15] = vf
 
                 case instruction if instruction.startswith("9"):

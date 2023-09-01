@@ -19,6 +19,27 @@ This project is in active development. It is currently passing all [Corax+](http
   A 0 B F            Z X C V
 
 Chip-8 Keypad    QWERTY equivilant
+-------------------------------------
+{
+    K_1: 1,
+    K_2: 2,
+    K_3: 3,
+    K_4: 12,
+    K_q: 4,
+    K_w: 5,
+    K_e: 6,
+    K_r: 13,
+    K_a: 7,
+    K_s: 8,
+    K_d: 9,
+    K_f: 14,
+    K_z: 10,
+    K_x: 0,
+    K_c: 11,
+    K_v: 15,
+}
+
+Pygame keybindings
 ```
 
 ## Usage

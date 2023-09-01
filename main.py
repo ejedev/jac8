@@ -36,6 +36,7 @@ def main():
     if results.debug:
         print(data.debug)
     while running:
+        draw = False
         if timer != 0:
             timer -= 1
         if stimer != 0:
@@ -100,6 +101,7 @@ def main():
 
             case instruction if instruction.startswith("d"):
                 # New variables x1, y1 created as they need to be modified during the draw loop.
+                draw = True
                 x1 = registers[vx] & 63
                 y1 = registers[vy] & 31
                 n = int(instruction.split(f"d{x}{y}")[1], 16)
@@ -238,7 +240,8 @@ def main():
         for cell in cells:
             if cells[cell] is True:
                 pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(cell[0], cell[1], 10, 10))
-        pygame.display.flip()
+        if draw:
+            pygame.display.flip()
         # FPS set at 60 for timers.
         clock.tick(60)
 

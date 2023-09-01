@@ -4,13 +4,13 @@ Just another Chip-8 Interpreter written in Python.
 
 ## Warning
 
-This project is in active development. It is currently failing several [Corax+](https://github.com/Timendus/chip8-test-suite) tests (`8xyE` and `Registers`)
+This project is in active development. It is currently passing all [Corax+](https://github.com/Timendus/chip8-test-suite) tests but is still unstable.
 
 ## Features
 
-- Rudimentary Chip-8 emulation. Can run the IBM logo and most tests although some fail.
+- Chip-8 emulation. Can run the IBM logo and pass tests. Initial testing with Pong works.
 - Rudimentary step by step debugger that allows you to dump the memory, registers, and stack. Shows the current `pc`, `i`, `instruction`, etc.
-- Keypad input, it marks a key as being pressed until it is released. The keypad bindings are as follows:
+- Keypad input. It marks a key as being pressed until it is released which can cause some issues. The keypad bindings are as follows:
 
 ```
   1 2 3 C            1 2 3 4

@@ -62,6 +62,8 @@ def main():
             nnn = int(instruction[1:], 16)
             nn = int(instruction[2:], 16)
             nnstr = instruction[2:]
+            n = int(instruction[-1], 16)
+            nstr = instruction[-1]
             x = instruction[1:2]
             y = instruction[2:3]
             vx = int(instruction[1:2], 16)
@@ -113,7 +115,6 @@ def main():
                     draw = True
                     x1 = registers[vx] & 63
                     y1 = registers[vy] & 31
-                    n = int(instruction.split(f"d{x}{y}")[1], 16)
                     registers[15] = 0
                     for s in range(0, n):
                         sprite = ram[i + s]
@@ -140,6 +141,7 @@ def main():
                         case "a1":
                             if not ipf or data.keypad[ckey] != registers[vx]:
                                 pc += 2
+
                 case instruction if instruction.startswith("f"):
                     match nnstr:
                         case "07":
@@ -204,8 +206,7 @@ def main():
                     registers[vx] %= 256
 
                 case instruction if instruction.startswith("8"):
-                    n = instruction.split(f"8{x}{y}")[1]
-                    match n:
+                    match nstr:
                         case "0":
                             registers[vx] = registers[vy]
                         case "1":

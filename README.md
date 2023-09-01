@@ -48,6 +48,8 @@ Install the required modules with `pip3 install -r requirements.txt`
 
 You can run a game with `python3 main.py path/to/file.ch8`.
 
+You can specify the amount of cycles per frame with `-c int` or `--cycles int`. This interpreter runs at 60 frames per second. If not provided, a default value of 15 is used which may be too fast for some games.
+
 Run it with the `--debug` flag to enter step by step debugging.
 
 Debugging example:

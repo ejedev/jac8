@@ -20,8 +20,6 @@ def main():
     ckey = 0
     timer = 0
     stimer = 0
-    # TODO make cycles configurable
-    cycles = 15
     # First 512 bytes are reserved. Execution starts at 0x200.
     pc = 512
     i = 0
@@ -56,7 +54,7 @@ def main():
                 ipf = False
 
         screen.fill(pygame.Color(0, 0, 0, 0))
-        for c in range(0, cycles):
+        for c in range(0, results.cycles):
             # Instruction is two bytes. We load both and trim values into a string so we can parse it in a human-readable way.
             instruction = parse.trim(hex(ram[pc])) + parse.trim(hex(ram[pc + 1]))
             pc += 2
@@ -208,15 +206,15 @@ def main():
                         case "4":
                             registers[vx] += registers[vy]
                             if registers[vx] > 255:
-                                registers[15] = 1
                                 registers[vx] -= 256
+                                registers[15] = 1
                             else:
                                 registers[15] = 0
                         case "5":
                             registers[vx] = registers[vx] - registers[vy]
                             if registers[vx] < 0:
-                                registers[15] = 0
                                 registers[vx] += 256
+                                registers[15] = 0
                             else:
                                 registers[15] = 1
                         case "6":
@@ -225,8 +223,8 @@ def main():
                         case "7":
                             registers[vx] = registers[vy] - registers[vx]
                             if registers[vx] < 0:
-                                registers[15] = 0
                                 registers[vx] += 256
+                                registers[15] = 0
                             else:
                                 registers[15] = 1
                         case "e":

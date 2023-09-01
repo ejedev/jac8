@@ -59,6 +59,7 @@ def main():
         pc += 2
         nnn = int(instruction[1:], 16)
         nn = int(instruction[2:], 16)
+        nnstr = instruction[2:]
         x = instruction[1:2]
         y = instruction[2:3]
         vx = int(instruction[1:2], 16)
@@ -123,7 +124,7 @@ def main():
                     x1 = registers[vx] & 63
 
             case instruction if instruction.startswith("e"):
-                match nn:
+                match nnstr:
                     case "9e":
                         if ipf and data.keypad[ckey] == registers[vx]:
                             pc += 2
@@ -131,7 +132,7 @@ def main():
                         if not ipf or data.keypad[ckey] != registers[vx]:
                             pc += 2
             case instruction if instruction.startswith("f"):
-                match nn:
+                match nnstr:
                     case "07":
                         registers[vx] = timer
                     case "15":
@@ -153,17 +154,15 @@ def main():
                         ram[i + 1] = (registers[vx] // 10) % 10
                         ram[i + 2] = registers[vx] % 10
                     case "55":
-                        if x == 0:
-                            ram[i] = registers[0]
-                        else:
-                            for r in range(0, int(x, 16)):
-                                ram[i + r] = registers[r]
+                        vpos = 0
+                        while vpos <= int(x, 16):
+                            ram[i + vpos] = registers[vpos]
+                            vpos += 1
                     case "65":
-                        if x == 0:
-                            registers[0] = ram[i]
-                        else:
-                            for r in range(0, int(x, 16)):
-                                registers[r] = ram[i + r]
+                        vpos = 0
+                        while vpos <= int(x, 16):
+                            registers[vpos] = ram[i + vpos]
+                            vpos += 1
 
             case instruction if instruction.startswith("1"):
                 pc = nnn

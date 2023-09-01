@@ -218,8 +218,9 @@ def main():
                             else:
                                 registers[15] = 1
                         case "6":
-                            registers[15] = registers[vy] & 1
+                            vf = registers[vy] & 1
                             registers[vx] = (registers[vy] >> 1) % 256
+                            registers[15] = vf
                         case "7":
                             registers[vx] = registers[vy] - registers[vx]
                             if registers[vx] < 0:
@@ -228,8 +229,9 @@ def main():
                             else:
                                 registers[15] = 1
                         case "e":
-                            registers[15] = (registers[vy] >> 7) & 1
+                            vf = (registers[vy] >> 7) & 1
                             registers[vx] = (registers[vy] << 1) % 256
+                            registers[15] = vf
 
                 case instruction if instruction.startswith("9"):
                     if registers[vx] != registers[vy]:

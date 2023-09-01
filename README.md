@@ -104,3 +104,4 @@ jac8$
 
 - https://tobiasvl.github.io/blog/write-a-chip-8-emulator
 - https://github.com/IslayLaphroaig/CHIP-8
+- https://github.com/Timendus/chip8-test-suite/

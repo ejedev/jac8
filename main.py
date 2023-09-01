@@ -117,8 +117,8 @@ def main():
                     registers[15] = 0
                     for s in range(0, n):
                         sprite = ram[i + s]
-                        for _ in range(0, 8):
-                            validSpritePixel = (sprite & (1 << 7 - _)) != 0
+                        for w in range(0, 8):
+                            validSpritePixel = (sprite & (1 << 7 - w)) != 0
                             if validSpritePixel and cells[(x1 * 10, y1 * 10)] is False:
                                 cells[(x1 * 10, y1 * 10)] = True
                             elif validSpritePixel and cells[(x1 * 10, y1 * 10)] is True:

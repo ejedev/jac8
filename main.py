@@ -213,7 +213,7 @@ def main():
                             registers[15] = 0
                             registers[vx] += 256
                         else:
-                            registers[15] = 0
+                            registers[15] = 1
                     case "6":
                         registers[15] = registers[vy] & 1
                         registers[vx] = registers[vy] >> 1
@@ -240,7 +240,7 @@ def main():
                 pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(cell[0], cell[1], 10, 10))
         pygame.display.flip()
         # FPS set at 60 for timers.
-        clock.tick(60)
+        clock.tick(240)
 
 
 if __name__ == "__main__":

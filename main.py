@@ -49,9 +49,8 @@ def main():
                 else:
                     ipf = True
                     ckey = int(event.key)
-            else:
+            elif event.type == pygame.KEYUP:
                 ipf = False
-                ckey = 0
 
         screen.fill(pygame.Color(0, 0, 0, 0))
         # Instruction is two bytes. We load both and trim values into a string so we can parse it in a human-readable way.

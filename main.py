@@ -240,7 +240,7 @@ def main():
                 pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(cell[0], cell[1], 10, 10))
         pygame.display.flip()
         # FPS set at 60 for timers.
-        clock.tick(240)
+        clock.tick(60)
 
 
 if __name__ == "__main__":

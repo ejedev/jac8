@@ -48,8 +48,9 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
                 else:
-                    ipf = True
-                    ckey = int(event.key)
+                    if int(event.key) in data.keypad:
+                        ipf = True
+                        ckey = int(event.key)
             elif event.type == pygame.KEYUP:
                 ipf = False
 
@@ -240,10 +241,10 @@ def main():
                 case _:
                     print("Unknown instructions:", instruction)
 
-        for cell in cells:
-            if cells[cell] is True:
-                pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(cell[0], cell[1], 10, 10))
         if draw:
+            for cell in cells:
+                if cells[cell] is True:
+                    pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(cell[0], cell[1], 10, 10))
             pygame.display.flip()
         # FPS set at 60 for timers.
         clock.tick(60)

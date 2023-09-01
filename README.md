@@ -4,7 +4,26 @@ Just another Chip-8 Interpreter written in Python.
 
 ## Warning
 
-This project is in active development. It is currently passing all [Corax+](https://github.com/Timendus/chip8-test-suite) tests but is still unstable.
+This project is in active development, it may be unstable.
+
+The following progress has been made, based on [Timendus' Chip-8 Test Suite.](https://github.com/Timendus/chip8-test-suite)
+
+- [x] CHIP-8 splash screen
+- [x] IBM logo
+- [x] Corax+ opcode test (passing all tests)
+- [x] Flags test (passing all tests)
+- [ ] Quirks test (compatibility modes)
+  - [ ] CHIP-8
+  - [ ] SCHIP
+  - [ ] XO-CHIP
+- [ ] Keypad test
+  - [x] Ex9E DOWN
+  - [x] ExA1 UP
+  - [ ] Fx0A GETKEY (failing due to how keypresses are being recorded. The instruction still works.)
+
+Known issues:
+
+- No sound.
 
 ## Features
 

@@ -162,6 +162,7 @@ def main():
                         case "0a":
                             if ipf:
                                 registers[vx] = data.keypad[ckey]
+                                ipf = False
                             else:
                                 pc -= 2
                         case "29":

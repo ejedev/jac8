@@ -16,10 +16,7 @@ The following progress has been made, based on [Timendus' Chip-8 Test Suite.](ht
   - [x] CHIP-8
   - [x] SCHIP
   - [x] XO-CHIP
-- [ ] Keypad test
-  - [x] Ex9E DOWN
-  - [x] ExA1 UP
-  - [ ] Fx0A GETKEY (failing due to how keypresses are being recorded. The instruction still works.)
+- [x] Keypad test (passing all tests)
 
 Known issues:
 
@@ -27,9 +24,10 @@ Known issues:
 
 ## Features
 
-- Chip-8 emulation. Can run the IBM logo and pass tests. Initial testing with Pong works.
+- Chip-8 emulation. Can run the IBM logo and pass tests as well as most games I've tried.
 - Rudimentary step by step debugger that allows you to dump the memory, registers, and stack. Shows the current `pc`, `i`, `instruction`, etc.
-- Keypad input. It marks a key as being pressed until it is released which can cause some issues. The keypad bindings are as follows:
+- Quirk support, more info available in `Usage` section.
+- Keypad input. The keypad bindings are as follows:
 
 ```
   1 2 3 C            1 2 3 4

@@ -12,10 +12,10 @@ The following progress has been made, based on [Timendus' Chip-8 Test Suite.](ht
 - [x] IBM logo
 - [x] Corax+ opcode test (passing all tests)
 - [x] Flags test (passing all tests)
-- [ ] Quirks test (compatibility modes)
+- [x] Quirks test (passing all tests)
   - [x] CHIP-8
   - [x] SCHIP
-  - [ ] XO-CHIP (missing Clipping)
+  - [x] XO-CHIP
 - [ ] Keypad test
   - [x] Ex9E DOWN
   - [x] ExA1 UP

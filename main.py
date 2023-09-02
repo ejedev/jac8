@@ -60,14 +60,14 @@ def main():
             instruction = parse.trim(hex(ram[pc])) + parse.trim(hex(ram[pc + 1]))
             pc += 2
             nnn = int(instruction[1:], 16)
-            nn = int(instruction[2:], 16)
             nnstr = instruction[2:]
-            n = int(instruction[-1], 16)
+            nn = int(nnstr, 16)
             nstr = instruction[-1]
+            n = int(nstr, 16)
             x = instruction[1:2]
             y = instruction[2:3]
-            vx = int(instruction[1:2], 16)
-            vy = int(instruction[2:3], 16)
+            vx = int(x, 16)
+            vy = int(y, 16)
 
             if results.debug:
                 while True:
@@ -125,9 +125,15 @@ def main():
                             elif validSpritePixel and cells[(x1 * 10, y1 * 10)] is True:
                                 cells[(x1 * 10, y1 * 10)] = False
                                 registers[15] = 1
+                            # X clipping quirk
+                            if results.mode == "xochip":
+                                x1 = x1 % 63
                             if x1 >= 63:
                                 break
                             x1 += 1
+                        # Y clipping quirk
+                        if results.mode == "xochip":
+                            y1 = y1 % 31
                         if y1 >= 31:
                             break
                         y1 += 1
